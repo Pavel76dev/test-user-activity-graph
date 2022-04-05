@@ -19,5 +19,4 @@ connection.on('error', err => {
 
 connection.connect();
 
-
 export default connection;

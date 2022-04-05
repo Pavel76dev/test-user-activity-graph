@@ -1,27 +1,94 @@
-.App {
+.container {
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.users {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.users .title {
+  text-align: left;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+  color: #3C5AA8;
+  opacity: 0.4;
+}
+
+.container-table {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 4px 0px 10px rgba(93, 109, 151, 0.1);
+  text-align: left;
+}
+
+.table-users {
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+
+.table-users th {
+  border-bottom: 1px solid #ccc;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5D6D97;
+  text-align: center;
+  padding: 16px 70px 16px 70px;
+}
+
+.table-users th:last-child {
+  padding: 16px 20px 16px 20px;
+}
+
+.table-users td {
+  border-bottom: 1px solid #ccc;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5D6D97;
+  padding: 16px 70px 16px 70px;
+}
+
+.table-users td:last-child {
+  padding: 16px 20px 16px 20px;
+}
+
+.table-users tr:hover {
+  background: rgba(93, 109, 151, 0.1);
+}
+
+.opration {
+  text-align: center;
+}
+
+.button-delete, .edit {
+  cursor: pointer;
+}
+
+.footer-table {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button {
+  border: none;
+  outline: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  padding: 11px 29px 11px 27px;
+  background: #4A9DFF;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 20px;
 }
