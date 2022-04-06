@@ -1,15 +1,20 @@
 import React from 'react';
+// @ts-ignore
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { IUser } from '../interfaces';
 import deleteSvg from '../icons/delete.svg';
 
 type UsersListProps = {
   users: IUser[];
   onDelete(id: number): void;
+  onChange(id: number, date: Date, active: boolean): void;
 }
 
 export const UsersList: React.FC<UsersListProps> = ({
   users,
-  onDelete
+  onDelete,
+  onChange
 }) => {
   const deleteHandler = (event: React.MouseEvent, id: number) => {
     event.preventDefault();
@@ -18,7 +23,6 @@ export const UsersList: React.FC<UsersListProps> = ({
 
   const renderHeader = () => {
     let headerElement = ['UserID', 'Date Registration', 'Date Last Activity', ''];
-
     return headerElement.map((key, index) => {
       return <th key={index}>{key}</th>
     })
@@ -26,12 +30,21 @@ export const UsersList: React.FC<UsersListProps> = ({
 
   const renderBody = () => {
     return users.map(user => {
-      console.log({ user: user });
       return (
         <tr key={user.id}>
           <td>{user.id}</td>
-          <td className='edit'>{user.dateRegistration.toLocaleDateString()}</td>
-          <td className='edit'>{user.dateLastActivity.toLocaleDateString()}</td>
+          <td className='edit'>
+            <DatePicker 
+              selected={user.dateRegistration} 
+              onChange={(date: Date) => onChange(user.id, date, false)}
+              dateFormat="dd/MM/yyyy" />
+          </td>
+          <td className='edit'>
+            <DatePicker 
+              selected={user.dateLastActivity} 
+              onChange={(date: Date) => onChange(user.id, date, true)}
+              dateFormat="dd/MM/yyyy" />
+          </td>
           <td className='opration'>
             <div className='button-delete' onClick={(e) => deleteHandler(e, user.id)}>
               <img src={deleteSvg} alt='' />

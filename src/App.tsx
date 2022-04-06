@@ -3,9 +3,12 @@ import './App.css';
 import { IUser } from './interfaces';
 import data from './data';
 import { UsersList } from './components/UsersList';
+import calculate from './utils/calculate';
+const ROLLING_RETENTION_DAYS = 7;
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
+  const [result, setResult] = useState<number>(0);
 
   useEffect(() => {
     // fetch(`/users`)
@@ -22,12 +25,32 @@ const App: React.FC = () => {
     }
   }
 
+  const onChange = (id: number, date: Date, activ: boolean) => {
+    const newUsers = users.map((user) => (
+      user.id === id
+        ? 
+        (!activ
+        ?
+        { ...user, dateRegistration: date }
+        :
+        { ...user, dateLastActivity: date })
+        : user
+    ));
+    setUsers(newUsers);
+  }
+
+  const onAdd = () => {
+    const date: Date = new Date;
+    const user: IUser = {id: (users.length + 1), dateRegistration: date, dateLastActivity: date};
+    setUsers([...users, user]);
+  }
+
   const onCalculate = () => {
+    setResult(calculate(users, ROLLING_RETENTION_DAYS));
   }
 
   const onSave = () => {
   }
-
   return (
     <React.Fragment>
       <div className="container">
@@ -39,9 +62,12 @@ const App: React.FC = () => {
               <UsersList
                 users={users}
                 onDelete={onDelete}
+                onChange={onChange}
               />
               <div className='footer-table'>
                 <button className='button' onClick={() => onCalculate()}>Calculate</button>
+                {!!result && <div className='result'>{result} %</div>}
+                <button className='button save add' onClick={() => onAdd()}>Add</button>
                 <button className='button save' onClick={() => onSave()}>Save</button>
               </div>
             </div>

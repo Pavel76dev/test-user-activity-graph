@@ -43,6 +43,18 @@
   padding: 16px 70px 16px 70px;
 }
 
+.edit input {
+  border: none !important;
+  border-bottom: 1px solid #ccc;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5D6D97;
+  text-align: center;
+  padding: 16px;
+}
+
 .table-users th:last-child {
   padding: 16px 20px 16px 20px;
 }
@@ -54,7 +66,7 @@
   font-size: 14px;
   line-height: 16px;
   color: #5D6D97;
-  padding: 16px 70px 16px 70px;
+  padding: 0 70px 0 70px;
 }
 
 .table-users td:last-child {
@@ -78,7 +90,7 @@
   justify-content: space-between;
 }
 
-.button {
+.footer-table .button {
   border: none;
   outline: none;
   font-style: normal;
@@ -91,4 +103,18 @@
   border-radius: 10px;
   cursor: pointer;
   margin: 20px;
+}
+
+.footer-table .button.add{
+  margin-left: auto;
+}
+
+.footer-table .result {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #5D6D97;
+  text-align: center;
+  margin-top: 30px;
 }
