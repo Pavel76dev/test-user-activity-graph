@@ -8,7 +8,7 @@
   margin-top: 30px;
 }
 
-.users .title {
+.title {
   text-align: left;
   font-weight: 400;
   font-size: 20px;
@@ -16,6 +16,11 @@
   text-transform: uppercase;
   color: #3C5AA8;
   opacity: 0.4;
+}
+
+.bar-graph .title {
+  text-align: center;
+  margin-top: 40px;
 }
 
 .container-table {
@@ -105,6 +110,10 @@
   margin: 20px;
 }
 
+.footer-table .button.disabled {
+  opacity: 0.4;
+}
+
 .footer-table .button.add{
   margin-left: auto;
 }
@@ -117,4 +126,8 @@
   color: #5D6D97;
   text-align: center;
   margin-top: 30px;
+}
+
+.container-graph {
+  min-height: 350px;
 }

@@ -30,20 +30,24 @@ export const UsersList: React.FC<UsersListProps> = ({
 
   const renderBody = () => {
     return users.map(user => {
+      // let dateReg: Date = 
       return (
         <tr key={user.id}>
           <td>{user.id}</td>
           <td className='edit'>
-            <DatePicker 
-              selected={user.dateRegistration} 
+            <DatePicker
+              selected={user.dateRegistration}
               onChange={(date: Date) => onChange(user.id, date, false)}
-              dateFormat="dd/MM/yyyy" />
+              dateFormat="dd/MM/yyyy"
+              maxDate={user.dateLastActivity} />
           </td>
           <td className='edit'>
-            <DatePicker 
-              selected={user.dateLastActivity} 
+            <DatePicker
+              selected={user.dateLastActivity}
               onChange={(date: Date) => onChange(user.id, date, true)}
-              dateFormat="dd/MM/yyyy" />
+              dateFormat="dd/MM/yyyy"
+              minDate={user.dateRegistration}
+              maxDate={new Date()} />
           </td>
           <td className='opration'>
             <div className='button-delete' onClick={(e) => deleteHandler(e, user.id)}>

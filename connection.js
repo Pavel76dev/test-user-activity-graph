@@ -6,7 +6,9 @@ connection = mysql.createConnection({
     host: MYSQL_HOST,
     user: MYSQL_USER,
     password: MYSQL_PASSWORD,
-    database: MYSQL_DATABASE
+    database: MYSQL_DATABASE,
+    // dateStrings: true
+    multipleStatements: true,
 });
 
 connection.on('connect', () => {

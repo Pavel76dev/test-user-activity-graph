@@ -3,3 +3,8 @@ export interface IUser {
   dateRegistration: Date;
   dateLastActivity: Date;
 }
+
+export interface IResult {
+  rollingRetention: number;
+  barGraphData: object[];
+}
