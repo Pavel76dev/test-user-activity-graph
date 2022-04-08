@@ -28,6 +28,11 @@
   border-radius: 10px;
   box-shadow: 4px 0px 10px rgba(93, 109, 151, 0.1);
   text-align: left;
+  padding: 20px;
+}
+
+.container-table .empty {
+  text-align: center;
 }
 
 .table-users {

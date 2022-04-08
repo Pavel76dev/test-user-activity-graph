@@ -16,23 +16,24 @@ const App: React.FC = () => {
   const [result, setResult] = useState<number>(0);
   const [hasResult, setHasResult] = useState<boolean>(false);
   const [saving, setSaving] = useState<boolean>(true);
+  const hasUsers = users.length > 0;
 
   useEffect(() => {
-    fetch(`/users`)
-      .then(res => res.json())
-      .then(data => {
-        console.log({ data: data });
-        const newUsers = data.users.map((user: any) => (
-          {
-            ...user,
-            dateRegistration: new Date(user.date_registration),
-            dateLastActivity: new Date(user.date_last_activity)
-          }
-        ));
-        setUsers(newUsers);
-        setUsersIds(data.users.map((user: any) => (user.id)));
-      })
-    // setUsers(data);
+    // fetch(`/users`)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //   console.log({ data: data });
+    //   const newUsers = data.users.map((user: any) => (
+    //     {
+    //       ...user,
+    //       dateRegistration: new Date(user.date_registration),
+    //       dateLastActivity: new Date(user.date_last_activity)
+    //     }
+    //   ));
+    //   setUsers(newUsers);
+    //   setUsersIds(data.users.map((user: any) => (user.id)));
+    // })
+    setUsers([]);
   }, [])
 
   const onDelete = (id: number) => {
@@ -75,7 +76,7 @@ const App: React.FC = () => {
     const user: IUser = { id: (newId), dateRegistration: date, dateLastActivity: date };
     setUsers([...users, user]);
     setUsersAdd([...usersAdd, transformationDuring(newId, user)]);
-    setSaving(true);
+    setSaving(false);
     setHasResult(false);
   }
 
@@ -107,36 +108,42 @@ const App: React.FC = () => {
       <div className="container">
         <div className="users">
           <h1 className='title'>Users Table</h1>
-          {users.length > 0
-            ?
-            <div className='container-table'>
+          <div className='container-table'>
+            {hasUsers ?
               <UsersList
                 users={users}
                 onDelete={onDelete}
                 onChange={onChange}
               />
-              <div className='footer-table'>
-                <button
-                  // className='button'
-                  className={saving ? 'button' : 'button disabled'}
-                  disabled={!saving}
-                  onClick={() => onCalculate()}>
-                  Calculate
-                </button>
-                {saving ?
-                  hasResult && <div className='result'>Rolling Retention 7 day: {result} %</div>
-                  :
-                  <div className='result'>Need to save data</div>}
+              :
+              <p className="empty">The list is empty.</p>
+            }
+            <div className='footer-table'>
+              {hasUsers ?
+                <>
+                  <button
+                    className={saving ? 'button' : 'button disabled'}
+                    disabled={!saving}
+                    onClick={() => onCalculate()}>
+                    Calculate
+                  </button>
+                  <>
+                    {saving ?
+                      hasResult && <div className='result'>Rolling Retention 7 day: {result} %</div>
+                      :
+                      <div className='result'>Need to save data</div>}
+                  </>
+                  <button className='button save add' onClick={() => onAdd()}>Add</button>
+                  <button className='button save' onClick={() => onSave()}>Save</button>
+                </>
+                :
                 <button className='button save add' onClick={() => onAdd()}>Add</button>
-                <button className='button save' onClick={() => onSave()}>Save</button>
-              </div>
+              }
             </div>
-            :
-            <p className="empty">The list is empty.</p>
-          }
+          </div>
         </div >
         <div className='container-graph'>
-          {(!!hasResult && !!saving) && <BarGraph data={barGraphData} />}
+          {(!!hasResult && !!saving && users.length > 1) && <BarGraph data={barGraphData} />}
         </div>
       </div>
     </React.Fragment>
