@@ -1,8 +1,8 @@
 import mysql from 'mysql2';
 import { MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE } from './constants/index.js';
 
-let connection;
-connection = mysql.createConnection({
+let pool;
+pool = mysql.createPool({
     host: MYSQL_HOST,
     user: MYSQL_USER,
     password: MYSQL_PASSWORD,
@@ -11,14 +11,12 @@ connection = mysql.createConnection({
     multipleStatements: true,
 });
 
-connection.on('connect', () => {
-    console.log(`Connected to database '${connection.config.database}'.`);
+pool.on('connect', () => {
+    console.log(`Connected to database '${pool.config.database}'.`);
 });
 
-connection.on('error', err => {
+pool.on('error', err => {
     console.log('Connection error: ', err);
 });
 
-connection.connect();
-
-export default connection;
+export default pool;

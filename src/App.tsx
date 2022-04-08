@@ -33,7 +33,7 @@ const App: React.FC = () => {
       setUsers(newUsers);
       setUsersIds(data.users.map((user: any) => (user.id)));
     })
-    // setUsers([]);
+    // setUsers(data);
   }, [])
 
   const onDelete = (id: number) => {
