@@ -19,21 +19,21 @@ const App: React.FC = () => {
   const hasUsers = users.length > 0;
 
   useEffect(() => {
-    // fetch(`/users`)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //   console.log({ data: data });
-    //   const newUsers = data.users.map((user: any) => (
-    //     {
-    //       ...user,
-    //       dateRegistration: new Date(user.date_registration),
-    //       dateLastActivity: new Date(user.date_last_activity)
-    //     }
-    //   ));
-    //   setUsers(newUsers);
-    //   setUsersIds(data.users.map((user: any) => (user.id)));
-    // })
-    setUsers([]);
+    fetch(`/users`)
+      .then(res => res.json())
+      .then(data => {
+      console.log({ data: data });
+      const newUsers = data.users.map((user: any) => (
+        {
+          ...user,
+          dateRegistration: new Date(user.date_registration),
+          dateLastActivity: new Date(user.date_last_activity)
+        }
+      ));
+      setUsers(newUsers);
+      setUsersIds(data.users.map((user: any) => (user.id)));
+    })
+    // setUsers([]);
   }, [])
 
   const onDelete = (id: number) => {
