@@ -30,7 +30,6 @@ export const UsersList: React.FC<UsersListProps> = ({
 
   const renderBody = () => {
     return users.map(user => {
-      // let dateReg: Date = 
       return (
         <tr key={user.id}>
           <td>{user.id}</td>
@@ -60,7 +59,7 @@ export const UsersList: React.FC<UsersListProps> = ({
   }
 
   return (
-    <React.Fragment>
+    <>
       <table className='table-users'>
         <thead>
           <tr>{renderHeader()}</tr>
@@ -69,6 +68,6 @@ export const UsersList: React.FC<UsersListProps> = ({
           {renderBody()}
         </tbody>
       </table>
-    </React.Fragment>
+    </>
   )
 }

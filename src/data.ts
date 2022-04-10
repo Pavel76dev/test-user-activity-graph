@@ -20,7 +20,27 @@ const data: IUser[] =[
         id: 4,
         dateRegistration: new Date("2022-03-01T21:00:00.000Z"),
         dateLastActivity: new Date("2022-03-02T21:00:00.000Z")
-    }
+    },
+    {
+        id: 5,
+        dateRegistration: new Date("2022-03-01T21:00:00.000Z"),
+        dateLastActivity: new Date("2022-03-08T21:00:00.000Z")
+    },
+    {
+        id: 6,
+        dateRegistration: new Date("2022-03-01T21:00:00.000Z"),
+        dateLastActivity: new Date("2022-03-15T21:00:00.000Z")
+    },
+    {
+        id: 7,
+        dateRegistration: new Date("2022-03-01T21:00:00.000Z"),
+        dateLastActivity: new Date("2022-03-12T21:00:00.000Z")
+    },
+    {
+        id: 8,
+        dateRegistration: new Date("2022-03-03T21:00:00.000Z"),
+        dateLastActivity: new Date("2022-03-15T21:00:00.000Z")
+    },
 ]
 
 export default data;

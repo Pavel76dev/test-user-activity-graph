@@ -33,7 +33,10 @@ const App: React.FC = () => {
       setUsers(newUsers);
       setUsersIds(data.users.map((user: any) => (user.id)));
     })
-    // setUsers(data);
+    .catch(()=> { 
+      console.log('Error getting data. The app is running as a demo.');
+      setUsers(data);
+    });
   }, [])
 
   const onDelete = (id: number) => {
@@ -103,8 +106,12 @@ const App: React.FC = () => {
     setSaving(true);
   }
 
+  const buttonAdd = () => {
+      return <button className='button save add' onClick={() => onAdd()}>Add</button>
+  }
+
   return (
-    <React.Fragment>
+    <>
       <div className="container">
         <div className="users">
           <h1 className='title'>Users Table</h1>
@@ -133,11 +140,11 @@ const App: React.FC = () => {
                       :
                       <div className='result'>Need to save data</div>}
                   </>
-                  <button className='button save add' onClick={() => onAdd()}>Add</button>
+                  {buttonAdd()}
                   <button className='button save' onClick={() => onSave()}>Save</button>
                 </>
                 :
-                <button className='button save add' onClick={() => onAdd()}>Add</button>
+                buttonAdd()
               }
             </div>
           </div>
@@ -146,7 +153,7 @@ const App: React.FC = () => {
           {(!!hasResult && !!saving && users.length > 1) && <BarGraph data={barGraphData} />}
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
